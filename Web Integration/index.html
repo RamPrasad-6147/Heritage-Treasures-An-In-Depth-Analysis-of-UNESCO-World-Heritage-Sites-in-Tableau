@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>UNESCO Sites Visualization</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet" />
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-light: #e8f5e9;
+      --bg-dark: #1b1b1b;
+      --text-light: #ffffff;
+      --text-dark: #000000;
+      --card-bg-light: #ffffff;
+      --card-bg-dark: #2e2e2e;
+      --border-accent: #00796b;
+    }
+
+    body {
+      background: var(--bg-light);
+      color: var(--text-dark);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      transition: background 0.4s ease, color 0.4s ease;
+      scroll-behavior: smooth;
+    }
+
+    .dark-mode {
+      background: var(--bg-dark);
+      color: var(--text-light);
+    }
+
+    .navbar {
+      background: linear-gradient(to right, #004d40, #00796b);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    .navbar-brand, .nav-link {
+      color: white !important;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 2rem;
+      background: linear-gradient(to right, #004d40, #00796b);
+      color: white;
+      border-radius: 1rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+
+    .tableau-card {
+      background: var(--card-bg-light);
+      border-radius: 1rem;
+      border: 3px solid var(--border-accent);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      padding: 1.5rem;
+      margin-bottom: 3rem;
+      transition: transform 0.3s ease;
+    }
+
+    .dark-mode .tableau-card {
+      background: var(--card-bg-dark);
+      border-color: #26a69a;
+    }
+
+    .tableau-card:hover {
+      transform: scale(1.01);
+    }
+
+    .tableauViz {
+      width: 100%;
+      border-radius: 1rem;
+    }
+
+    .title-bar {
+      text-align: center;
+      font-size: 1.6rem;
+      font-weight: bold;
+      margin-bottom: 1.2rem;
+      color: #004d40;
+    }
+
+    footer {
+      background-color: #004d40;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      margin-top: 4rem;
+    }
+
+    .mode-toggle {
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      color: white;
+      font-size: 1.2rem;
+      margin-left: 1rem;
+    }
+
+    .scroll-indicator {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: #00796b;
+      z-index: 9999;
+      transition: width 0.2s ease;
+    }
+  </style>
+</head>
+<body>
+  <div class="scroll-indicator" id="scrollIndicator"></div>
+
+  <nav class="navbar navbar-expand-lg sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">UNESCO Visualizer</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#dashboard1">Dashboard 1</a></li>
+          <li class="nav-item"><a class="nav-link" href="#dashboard2">Dashboard 2</a></li>
+          <li class="nav-item"><a class="nav-link" href="#story">Story</a></li>
+          <li class="nav-item"><button class="mode-toggle" onclick="toggleMode()">🌓</button></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container py-4">
+    <div class="header animate__animated animate__fadeInDown">
+      <h1 class="display-5">UNESCO World Heritage Sites</h1>
+      <p class="lead">Dive into dashboards & stories exploring global cultural treasures</p>
+    </div>
+
+    <div class="tableau-card" id="dashboard1" data-aos="fade-up">
+      <div class="title-bar">Dashboard: Site Overview</div>
+      <div class='tableauPlaceholder' id='viz1751201541883'>
+        <noscript><a href='#'><img alt='Dashboard 1' src='https://public.tableau.com/static/images/UN/UNESCOSiteOverView/Dashboard1/1_rss.png'/></a></noscript>
+        <object class='tableauViz' style='display:none;'>
+          <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F'/>
+          <param name='embed_code_version' value='3'/>
+          <param name='path' value='views/UNESCOSiteOverView/Dashboard1?:embed=true'/>
+          <param name='toolbar' value='yes'/>
+        </object>
+      </div>
+    </div>
+
+    <div class="tableau-card" id="dashboard2" data-aos="fade-up">
+      <div class="title-bar">Dashboard: Danger Site Analysis</div>
+      <div class='tableauPlaceholder' id='viz1751201813353'>
+        <noscript><a href='#'><img alt='Dashboard 2' src='https://public.tableau.com/static/images/UN/UNESCODangerSiteAnalysis/Dashboard2/1_rss.png'/></a></noscript>
+        <object class='tableauViz' style='display:none;'>
+          <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F'/>
+          <param name='embed_code_version' value='3'/>
+          <param name='name' value='UNESCODangerSiteAnalysis/Dashboard2'/>
+          <param name='toolbar' value='yes'/>
+        </object>
+      </div>
+    </div>
+
+    <div class="tableau-card" id="story" data-aos="fade-up">
+      <div class="title-bar">UNESCO Heritage Story</div>
+      <div class='tableauPlaceholder' id='viz1751201963895'>
+        <noscript><a href='#'><img alt='Story' src='https://public.tableau.com/static/images/UN/UNESCOStory/Story1/1_rss.png'/></a></noscript>
+        <object class='tableauViz' style='display:none;'>
+          <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F'/>
+          <param name='embed_code_version' value='3'/>
+          <param name='name' value='UNESCOStory/Story1'/>
+          <param name='toolbar' value='yes'/>
+        </object>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    &copy; 2025 UNESCO Visualizer | Crafted with 🌍 using Bootstrap & Tableau
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>AOS.init();</script>
+
+  <script type='text/javascript'>
+    const loadTableau = (id) => {
+      const div = document.getElementById(id);
+      const viz = div.getElementsByTagName('object')[0];
+      viz.style.display = 'block';
+      viz.style.width = '100%';
+      viz.style.height = '850px';
+      const script = document.createElement('script');
+      script.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+      viz.parentNode.insertBefore(script, viz);
+    };
+
+    loadTableau('viz1751201541883');
+    loadTableau('viz1751201813353');
+    loadTableau('viz1751201963895');
+
+    function toggleMode() {
+      document.body.classList.toggle('dark-mode');
+    }
+
+    window.onscroll = () => {
+      const scrollIndicator = document.getElementById("scrollIndicator");
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      scrollIndicator.style.width = scrolled + "%";
+    };
+  </script>
+</body>
+</html>
